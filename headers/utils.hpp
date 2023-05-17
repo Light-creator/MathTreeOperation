@@ -2,12 +2,14 @@
 #define UTILS_H_INCLUDED
 
 using namespace std;
-extern int splitByOperators(string str, string *strArr);
-extern int splitBySpace(string str, string *strArr);
-extern int splitByFirstSpace(string str, string *strArr);
-extern int splitBySeps(string str, string *strArr, string seps);
-extern bool isNumeric(string str);
+extern int splitByOperators(String str, String *strArr);
+extern int splitBySpace(String str, String *strArr);
+extern int splitByFirstSpace(String str, String *strArr);
+extern int splitBySeps(String str, String *strArr, String seps);
+extern bool isNumeric(String str);
 extern int NOK(int a, int b);
 extern int pow(int a, int b);
+extern void getLine(istream & is, String & _s);
+int stoi(String &st);
 
 #endif // UTILS_H_INCLUDED

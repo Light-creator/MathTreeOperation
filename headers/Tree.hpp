@@ -2,19 +2,19 @@
 #define TREE_H_INCLUDED
 
 #include <iostream>
-#include <string>
 
+#include "String.hpp"
 #include "utils.hpp"
 
 using namespace std;
 
 struct Node {
-    string val;
+    String val;
 
     Node *left;
     Node *right;
 
-    Node(string val) {
+    Node(String val) {
         this->val = val;
         this->left = nullptr; 
         this->right = nullptr;
@@ -35,31 +35,31 @@ public:
         return (root == nullptr);
     }
 
-    void buildTreeByStr(string *strArr, int lenArr);
+    void buildTreeByStr(String *strArr, int lenArr);
 
-    void loadPrf(string *strArr, int lenArr);
-    void loadPst(string *strArr, int lenArr);
+    void loadPrf(String *strArr, int lenArr);
+    void loadPst(String *strArr, int lenArr);
 
     void printTreePrf();
     void printTreePst();
     void printTreeInOrder();
     void free_tree();
 
-    void fillTree(string *strArr, int strLen);
+    void fillTree(String *strArr, int strLen);
     void eval();
 
 private:
-    Node* loadPrf(string *strArr, int lenArr, Node *node, int *i);
-    Node* loadPst(string *strArr, int lenArr, Node *node, int *i);
+    Node* loadPrf(String *strArr, int lenArr, Node *node, int *i);
+    Node* loadPst(String *strArr, int lenArr, Node *node, int *i);
 
     void free_treePrivate(Node *node);
     void printTreePrf(Node *node);
     void printTreePst(Node *node);
     void printTreeInOrder(Node *node);
     int eval(Node *node, Node *prevNode);
-    Node *buildTreeByStr(string *strArr, int lenArr, Node *node, int idxStart);
+    Node *buildTreeByStr(String *strArr, int lenArr, Node *node, int idxStart);
 
-    void fillTree(string *strArr, int strLen, Node *node);
+    void fillTree(String *strArr, int strLen, Node *node);
 
     Node *root;
 };

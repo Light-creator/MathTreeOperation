@@ -1,16 +1,25 @@
 #include <iostream>
-#include <string>
 
+#include "String.hpp"
 #include "utils.hpp"
 #include "Tree.hpp"
 
 using namespace std;
+/*
+int main() {
+    String s1 = "Hello";
+    String s2 = "Hello";
+    String s3 = s1+s2;
+    String s4 = s3 + s1;
+    cout << s4 << endl;
 
+    return 0;
+} */
 
 int main() {
-    string mainStr;
+    String mainStr;
 
-    string *strArr = new string[50];
+    String *strArr = new String[50];
     BTree *tree = new BTree();
 
     while(1) {
@@ -22,13 +31,14 @@ int main() {
         cout << "7) save_pst" << endl;
         cout << "8) eval ..." << endl;
         cout << "Enter the command: ";
-        getline(cin, mainStr);
+        getLine(cin, mainStr);
 
         int lenCmd = splitByFirstSpace(mainStr, strArr);
         if(strArr[0] == "exit") break;
         else if(strArr[0] == "parse") {
             int lenArr = splitByOperators(strArr[1], strArr);
             tree->buildTreeByStr(strArr, lenArr);
+            tree->printTreeInOrder();
         } else if(strArr[0] == "load_prf") {
             int lenArr = splitBySpace(strArr[1], strArr);
             tree->loadPrf(strArr, lenArr);
@@ -53,8 +63,10 @@ int main() {
     delete[] strArr;
 }
 
-// (9+3)-5*(25-1)
-// a*(b-c*d)/e
+
+// parse (9+3)-5*(25-1)
+// parse a*(b-c*d)/e
+// eval a=2 b=50 c=2 d=2 e=2
 // / * 5 - 14 * 4 2 2 
 // 5 14 4 2 * - * 2 /
 

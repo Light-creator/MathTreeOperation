@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
 
+#include "String.hpp"
 #include "utils.hpp"
 #include "Tree.hpp"
 
@@ -60,7 +60,7 @@ void BTree::printTreePst()
 }
 
 // Parse Expr
-Node *BTree::buildTreeByStr(string *strArr, int lenArr, Node *node, int idxStart)
+Node *BTree::buildTreeByStr(String *strArr, int lenArr, Node *node, int idxStart)
 {
     if (lenArr - idxStart <= 2)
     {
@@ -79,7 +79,7 @@ Node *BTree::buildTreeByStr(string *strArr, int lenArr, Node *node, int idxStart
 
     minPrior = 1000;
     idxMinPrior = 0;
-    string arr[4] = {"+-", "*/%", "^", "@"};
+    String arr[4] = {"+-", "*/%", "^", "@"};
     for (int i = idxStart; i < lenArr; i++)
     {
         if (strArr[i][0] == '(')
@@ -120,8 +120,8 @@ Node *BTree::buildTreeByStr(string *strArr, int lenArr, Node *node, int idxStart
     return nullptr;
 }
 
-Node *BTree::loadPrf(string *strArr, int lenArr, Node *node, int *i) {
-    string arr[7] = {"+", "-", "*", "/", "%", "^", "@"};
+Node *BTree::loadPrf(String *strArr, int lenArr, Node *node, int *i) {
+    String arr[7] = {"+", "-", "*", "/", "%", "^", "@"};
     bool f = false;
     for(int j=0; j<7; j++) {
         if(strArr[*i] == arr[j]) {
@@ -158,14 +158,14 @@ Node *BTree::loadPrf(string *strArr, int lenArr, Node *node, int *i) {
     return node;
 }
 
-void BTree::loadPrf(string *strArr, int lenArr)
+void BTree::loadPrf(String *strArr, int lenArr)
 {
     int i = 0;
     root = loadPrf(strArr, lenArr, root, &i);
 }
 
-Node *BTree::loadPst(string *strArr, int lenArr, Node *node, int *i) {
-    string arr[7] = {"+", "-", "*", "/", "%", "^", "@"};
+Node *BTree::loadPst(String *strArr, int lenArr, Node *node, int *i) {
+    String arr[7] = {"+", "-", "*", "/", "%", "^", "@"};
     bool f = false;
     for(int j=0; j<7; j++) {
         if(strArr[*i] == arr[j]) {
@@ -203,22 +203,22 @@ Node *BTree::loadPst(string *strArr, int lenArr, Node *node, int *i) {
     return node;
 }
 
-void BTree::loadPst(string *strArr, int lenArr)
+void BTree::loadPst(String *strArr, int lenArr)
 {
     int i = lenArr-1;
     root = loadPst(strArr, lenArr, root, &i);
 }
 
-void BTree::buildTreeByStr(string *strArr, int lenArr)
+void BTree::buildTreeByStr(String *strArr, int lenArr)
 {
     root = buildTreeByStr(strArr, lenArr, root, 0);
 }
 
 
-void BTree::fillTree(string *strArr, int strLen, Node *node) {
+void BTree::fillTree(String *strArr, int strLen, Node *node) {
     if(node == nullptr) return;
 
-    string arr[7] = {"+", "-", "*", "/", "%", "^", "@"};
+    String arr[7] = {"+", "-", "*", "/", "%", "^", "@"};
     bool f = false;
     for(int j=0; j<7; j++) {
         if(node->val == arr[j]) {
@@ -240,7 +240,7 @@ void BTree::fillTree(string *strArr, int strLen, Node *node) {
     fillTree(strArr, strLen, node->right);
 }
 
-void BTree::fillTree(string *strArr, int strLen) {
+void BTree::fillTree(String *strArr, int strLen) {
     fillTree(strArr, strLen, root);
 }
 

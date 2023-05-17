@@ -4,7 +4,8 @@ HDRS_DIR = \
 SRCS = \
 		main.cpp \
 		utils.cpp \
-		Tree.cpp 
+		Tree.cpp \
+		String.cpp
 .PHONY: all, build, clean, run
 
 $(TARGET):
