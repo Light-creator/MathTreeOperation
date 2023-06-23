@@ -64,6 +64,7 @@ Node *BTree::buildTreeByStr(String *strArr, int lenArr, Node *node, int idxStart
 {
     if (lenArr - idxStart <= 2)
     {
+        //cout << strArr[idxStart] << " " << strArr[idxStart+1] << " " << idxStart << endl;
         int newIdx;
         if (strArr[idxStart][0] == ')')
             newIdx = idxStart - 1;
@@ -107,7 +108,9 @@ Node *BTree::buildTreeByStr(String *strArr, int lenArr, Node *node, int idxStart
     }
 
     if (minPrior == 1000)
-        return buildTreeByStr(strArr, lenArr, node, idxStart + 1);
+        return buildTreeByStr(strArr, lenArr-1, node, idxStart + 1);
+    //else if(minPrior == 1000)
+     //   return buildTreeByStr(strArr, lenArr, node, idxStart + 1);
     else
     {
         node = new Node(strArr[idxMinPrior]);
@@ -211,7 +214,10 @@ void BTree::loadPst(String *strArr, int lenArr)
 
 void BTree::buildTreeByStr(String *strArr, int lenArr)
 {
-    root = buildTreeByStr(strArr, lenArr, root, 0);
+    if(isdigit(strArr[0][0])) 
+        root = buildTreeByStr(strArr, lenArr, root, 0);
+    else 
+        root = buildTreeByStr(strArr, lenArr, root, 1);
 }
 
 
@@ -244,11 +250,19 @@ void BTree::fillTree(String *strArr, int strLen) {
     fillTree(strArr, strLen, root);
 }
 
+int stoi2(String s) {
+  int multiplier = 1, result = 0;
+  for (int i = s.length() - 1; i >= 0; i--) {
+    result += multiplier * (s[i] - '0');
+    multiplier *= 10;
+  }
+  return result;
+}
 
 int BTree::eval(Node *node, Node *prevNode) {
 
     if(node->left == nullptr && node->right == nullptr) {
-        return stoi(node->val);
+        return stoi2(node->val);
     }
 
     if(!isNumeric(node->val)) {
